@@ -8,7 +8,6 @@ var VideoList = (props) => (
   </div>
 );
 
-
 // var GroceryList = (props) => (
 //   <ul>
 //     {props.list.map(list =>
@@ -16,7 +15,7 @@ var VideoList = (props) => (
 //     )}
 //   </ul>
 // );
-
+ 
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated
 VideoList.propTypes = {
