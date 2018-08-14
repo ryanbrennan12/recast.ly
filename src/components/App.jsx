@@ -3,8 +3,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      videos: window.exampleVideoData,
-      currentVideo: window.exampleVideoData[0]
+      videos: [],
+      currentVideo: {}
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -12,6 +12,13 @@ class App extends React.Component {
   handleClick(video) {
     this.setState({
       currentVideo: video
+    });
+  }
+  setVideos(ytArr) {
+    console.log(ytArr);
+    this.setState({
+      videos: ytArr,
+      currentVideo: ytArr[0]
     });
   }
 
@@ -36,6 +43,16 @@ class App extends React.Component {
       </div>
     );
   }
+
+  componentDidMount() {
+    var searchObj = {
+      key: window.YOUTUBE_API_KEY,
+      query: 'surfing dogs',
+      max: 5
+    };
+    this.props.searchyt(searchObj, this.setVideos);
+  }
+
 }
 
 // class GroceryListItem extends React.Component {
