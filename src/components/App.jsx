@@ -8,8 +8,22 @@ class App extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.setVideos = this.setVideos.bind(this);
-    
+    this.handleTextInput = this.handleTextInput.bind(this); 
+    // this.handleTextInput = _.debounce(this.handleTextInput, 500);
   }
+
+  handleTextInput(e) {
+    var dynaText = {
+      key: window.YOUTUBE_API_KEY,
+      query: e.target.value,
+      max: 5
+    };
+    this.props.searchYouTube(dynaText, this.setVideos);
+  
+  }
+
+
+
 
   handleClick(video) {
     this.setState({
@@ -29,7 +43,8 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><h5><em>search</em> view goes here</h5></div>
+            {/* <div><h5><em>search</em> view goes here</h5></div> */}
+            <Search onInput={this.handleTextInput}/>
           </div>
         </nav>
         <div className="row">

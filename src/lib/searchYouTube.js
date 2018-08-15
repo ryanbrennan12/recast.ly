@@ -22,7 +22,10 @@ var searchYouTube = (options, callback) => {
   });
 };
 
+var debounceSearch = _.debounce(searchYouTube, 500);
+
 window.searchYouTube = searchYouTube;
+window.debounceSearch = debounceSearch;
 
 // const searchYouTube = (options, callback) => {
 //   $.ajax({
