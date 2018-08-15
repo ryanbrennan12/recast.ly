@@ -4,9 +4,11 @@ class App extends React.Component {
     super(props);
     this.state = {
       videos: [],
-      currentVideo: {}
+      currentVideo: null
     };
     this.handleClick = this.handleClick.bind(this);
+    this.setVideos = this.setVideos.bind(this);
+    
   }
 
   handleClick(video) {
@@ -15,7 +17,7 @@ class App extends React.Component {
     });
   }
   setVideos(ytArr) {
-    console.log(ytArr);
+    // console.log('I am this...', this)
     this.setState({
       videos: ytArr,
       currentVideo: ytArr[0]
@@ -50,7 +52,10 @@ class App extends React.Component {
       query: 'surfing dogs',
       max: 5
     };
-    this.props.searchyt(searchObj, this.setVideos);
+    // console.log('this is this..', this);
+    // console.log('this is props? ..', this.props);
+
+    this.props.searchYouTube(searchObj, this.setVideos);
   }
 
 }
