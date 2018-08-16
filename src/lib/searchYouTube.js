@@ -12,8 +12,12 @@ var searchYouTube = (options, callback) => {
     },
     contentType: 'application/json',
     success: (data) => {
-      callback(data.items);
-
+      // console.log('these are our items', data.items);
+      if (data.items.length > 1) {
+        callback(data.items);
+      } else {
+        console.log('you typed gibberish and youtube did not return any results, please enjoy the surfing dogs');
+      }
     },
     error: (data) => {
       console.log('this failed', data);
