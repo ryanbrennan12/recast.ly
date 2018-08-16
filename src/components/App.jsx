@@ -8,28 +8,33 @@ class App extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.setVideos = this.setVideos.bind(this);
-    this.handleTextInput = this.handleTextInput.bind(this); 
+    this.handleTextInput = this.handleTextInput.bind(this);
+
+    // this.handleButton = this.handleButton.bind(this);
     // this.handleTextInput = _.debounce(this.handleTextInput, 500);
   }
 
   handleTextInput(e) {
+    e.persist();
     var dynaText = {
       key: window.YOUTUBE_API_KEY,
       query: e.target.value,
       max: 5
     };
-    this.props.searchYouTube(dynaText, this.setVideos);
-  
+    this.props.debounceSearch(dynaText, this.setVideos);
+
   }
 
-
-
+  handleButton(e) {
+    console.log('button clicked', e);
+  }
 
   handleClick(video) {
     this.setState({
       currentVideo: video
     });
   }
+
   setVideos(ytArr) {
     // console.log('I am this...', this)
     this.setState({
@@ -38,13 +43,19 @@ class App extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+    this.props.debounceSearch.cancel();
+  }
+
   render() {
     return (
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
             {/* <div><h5><em>search</em> view goes here</h5></div> */}
-            <Search onInput={this.handleTextInput}/>
+            <Search onInput={this.handleTextInput} onClick={this.handleButton}/>
+
+
           </div>
         </nav>
         <div className="row">
