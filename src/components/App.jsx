@@ -9,8 +9,7 @@ class App extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.setVideos = this.setVideos.bind(this);
     this.handleTextInput = this.handleTextInput.bind(this);
-
-    // this.handleButton = this.handleButton.bind(this);
+    // this.debounceSearch = _.debounce(searchYouTube, 500);
     // this.handleTextInput = _.debounce(this.handleTextInput, 500);
   }
 
@@ -23,10 +22,6 @@ class App extends React.Component {
     };
     this.props.debounceSearch(dynaText, this.setVideos);
 
-  }
-
-  handleButton(e) {
-    console.log('button clicked', e);
   }
 
   handleClick(video) {
@@ -53,9 +48,7 @@ class App extends React.Component {
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
             {/* <div><h5><em>search</em> view goes here</h5></div> */}
-            <Search onInput={this.handleTextInput} onClick={this.handleButton}/>
-
-
+            <Search onInput={this.handleTextInput} onButtonClick={this.handleButton}/>
           </div>
         </nav>
         <div className="row">
